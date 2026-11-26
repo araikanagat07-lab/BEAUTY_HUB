@@ -1,13 +1,8 @@
-// История посещений клиента и данные для статистики мастера.
-// Реальные записи берутся из bookingStore (localStorage),
-// а демо-данные нужны, чтобы страницы не были пустыми на защите.
-
 import { getBookings } from "./bookingStore";
 import { getMaster, getMasterServices, bookingStart, CLIENT_NAME } from "./mastersData";
 import { getClientId, isMine } from "./currentUser";
 
-// Итоговый статус с учётом времени:
-// подтверждённая запись, время которой прошло, считается завершённой.
+
 export function effectiveStatus(booking) {
   const passed = bookingStart(booking) <= new Date();
   if (passed && booking.status === "confirmed") return "completed";
@@ -41,7 +36,7 @@ const demoVisits = [
   { id: "demo-v6", masterId: "6", service: "Дневной макияж", price: 10000, duration: 60, date: "2026-08-14", time: "18:30", status: "completed" },
 ].map(withMaster);
 
-// Прошедшие визиты клиента (реальные + демо), новые сверху
+
 export function getClientVisits() {
   const real = getBookings()
     .filter(isMine)
@@ -60,7 +55,7 @@ export function getClientVisits() {
   );
 }
 
-// Будущие записи клиента (ожидают или подтверждены), ближайшие сверху
+
 export function getClientUpcoming() {
   return getBookings()
     .filter(isMine)
@@ -69,7 +64,7 @@ export function getClientUpcoming() {
     .sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
 }
 
-// Будущие записи к мастеру (для кабинета мастера)
+
 export function getMasterUpcoming(masterId) {
   return getBookings()
     .filter((booking) => String(booking.masterId) === String(masterId))
@@ -77,10 +72,10 @@ export function getMasterUpcoming(masterId) {
     .sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
 }
 
-// ---------- Демо-записи мастера за последние 6 месяцев ----------
+
 const clientNames = ["Аружан М.", "Айжан Б.", "Томирис К.", "Дана Е.", "Алия С.", "Мерей А.", "Камила Н.", "Инкар М.", "Сабина Т.", "Асель Ж."];
 
-// Простой генератор псевдослучайных чисел, чтобы цифры не менялись
+
 function seededRandom(seed) {
   let value = seed * 9301 + 49297;
   return () => {

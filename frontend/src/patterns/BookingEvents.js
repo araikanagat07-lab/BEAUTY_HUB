@@ -1,12 +1,3 @@
-// ПАТТЕРН OBSERVER (Наблюдатель) — уведомления о записях.
-//
-// Subject (BookingEventManager) хранит список наблюдателей и при каждом
-// событии (новая запись, смена статуса, новый отзыв, напоминание)
-// вызывает у каждого из них метод update(event).
-// Наблюдатели не знают друг о друге и не знают, кто создал событие —
-// поэтому можно добавить новый канал (email, SMS, push) одним классом,
-// не трогая код бронирования.
-
 import { addNotification } from "../notificationStore";
 import { formatDate } from "../mastersData";
 
@@ -19,7 +10,7 @@ export const EVENTS = {
   REMINDER: "reminder",
 };
 
-// ---------- Subject ----------
+
 class BookingEventManager {
   constructor() {
     this.observers = [];
@@ -40,9 +31,6 @@ class BookingEventManager {
   }
 }
 
-// ---------- Concrete Observers ----------
-
-// Уведомления для клиента
 class ClientNotifier {
   update({ type, payload: b }) {
     const when = b.date ? `${formatDate(b.date, { day: "numeric", month: "long" })}, ${b.time}` : "";
@@ -85,7 +73,7 @@ class ClientNotifier {
   }
 }
 
-// Уведомления для мастера
+
 class MasterNotifier {
   update({ type, payload: b }) {
     const when = b.date ? `${formatDate(b.date, { day: "numeric", month: "long" })}, ${b.time}` : "";

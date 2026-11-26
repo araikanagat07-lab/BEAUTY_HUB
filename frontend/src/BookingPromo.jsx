@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CheckoutHeader from "./CheckoutHeader";
 import { getCart, getDraft, saveCart, calculateTotal, money } from "./checkoutData";
+import { isValidPromo } from "./patterns/DiscountStrategies";
 import "./BookingPromo.css";
 
 export default function BookingPromo() {
@@ -16,10 +17,12 @@ export default function BookingPromo() {
   const totals = calculateTotal(draft, { ...cart, promo });
   const apply = event => {
     event.preventDefault();
-    if (code.trim().toUpperCase() === "BEAUTY10") {
-      setPromo("BEAUTY10");
-      saveCart({ ...cart, promo: "BEAUTY10" });
-      setFeedback("Промокод применён: скидка 10%!");
+ 
+    if (isValidPromo(code)) {
+      const normalized = code.trim().toUpperCase();
+      setPromo(normalized);
+      saveCart({ ...cart, promo: normalized });
+      setFeedback("Промокод применён!");
     } else {
       setPromo("");
       saveCart({ ...cart, promo: "" });
@@ -42,6 +45,7 @@ export default function BookingPromo() {
             {totals.additions.map(item => <div className="co-summary-line" key={item.id}><span>{item.name}</span><b>{money(item.price)}</b></div>)}
             <h3>Промокод</h3>
             <form onSubmit={apply} className="co-promo-form"><input value={code} onChange={e => setCode(e.target.value)} placeholder="Введите промокод" aria-label="Промокод" /><button type="submit" className="co-button">Применить</button></form>
+            {feedback && <p className="co-subtitle">{feedback}</p>}
             <Link className="co-back-link" to="/booking-extras">← Назад к дополнительным услугам</Link>
           </section>
           <aside className="co-summary co-summary-outline">

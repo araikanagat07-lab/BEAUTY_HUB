@@ -43,7 +43,7 @@ export function createBooking(booking) {
 
   saveBookings([...bookings, newBooking]);
 
-  // Observer: сообщаем всем подписчикам о новой записи
+
   bookingEvents.notify(EVENTS.BOOKING_CREATED, newBooking);
 
   return { success: true, booking: newBooking };

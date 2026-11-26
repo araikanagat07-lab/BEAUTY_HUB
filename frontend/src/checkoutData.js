@@ -1,12 +1,14 @@
+import { createService } from "./patterns/ServiceFactory";       
+import { extras, decorateService } from "./patterns/ServiceDecorators"; 
+import { getDiscountStrategy } from "./patterns/DiscountStrategies";  
+import { getMaster } from "./mastersData";
+
+export { extras };
+
 const CART_KEY = "beautyhub_checkout";
 const DRAFT_KEY = "beautyhub_draft";
 const RECEIPT_KEY = "beautyhub_receipt";
 
-export const extras = [
-  { id: "design", name: "Дизайн ногтей", description: "Небольшой рисунок или декор", price: 2000, image: "/images/nails1.jpg" },
-  { id: "strengthening", name: "Укрепление ногтей", description: "Дополнительное укрепляющее покрытие", price: 1500, image: "/images/nails2.jpg" },
-  { id: "removal", name: "Снятие старого покрытия", description: "Аккуратное снятие предыдущего покрытия", price: 1000, image: "/images/nails3.jpg" },
-];
 
 export function getDraft() {
   try { return JSON.parse(sessionStorage.getItem(DRAFT_KEY) || "null"); }
@@ -23,13 +25,33 @@ export function getReceipt() {
 }
 export function saveReceipt(receipt) { sessionStorage.setItem(RECEIPT_KEY, JSON.stringify(receipt)); }
 
+
 export function calculateTotal(draft, cart) {
-  const base = Number(draft?.price) || 0;
-  const additions = extras.filter(x => cart.selected?.includes(x.id));
-  const extraTotal = additions.reduce((sum, x) => sum + x.price, 0);
-  const subtotal = base + extraTotal;
-  const promo = (cart.promo || "").toUpperCase();
-  const discount = promo === "BEAUTY10" ? Math.round(subtotal * 0.1) : 0;
-  return { base, additions, extraTotal, subtotal, discount, total: subtotal - discount };
+  const category = getMaster(draft.masterId)?.job;
+  const selected = cart.selected || [];
+
+
+  const baseService = createService(category, draft.service, Number(draft.price));
+
+
+  const service = baseService.supportsExtras ? decorateService(baseService, selected) : baseService;
+
+ 
+  const strategy = getDiscountStrategy(cart.promo || "");
+
+  const base = baseService.getPrice();
+  const subtotal = service.getPrice();
+  const discount = strategy.calculate(subtotal);
+
+  return {
+    base,
+    additions: baseService.supportsExtras ? extras.filter((x) => selected.includes(x.id)) : [],
+    extraTotal: subtotal - base,
+    subtotal,
+    discount,
+    total: subtotal - discount,
+    supportsExtras: baseService.supportsExtras,
+  };
 }
+
 export const money = value => `${Number(value).toLocaleString("ru-RU")} ₸`;

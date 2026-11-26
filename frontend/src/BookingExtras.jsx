@@ -11,10 +11,11 @@ export default function BookingExtras() {
 
   if (!draft) return <div className="co-empty"><h2>Сначала выбери услугу и время</h2><Link to="/masters">К мастерам</Link></div>;
 
-  const nailService = /маникюр|педикюр|ногт/i.test(draft.service);
-  const choices = nailService ? extras : [];
   const cart = { selected, promo: getCart().promo || "" };
   const totals = calculateTotal(draft, cart);
+  // Factory Method решает, можно ли к этой услуге добавить доп. опции
+  const nailService = totals.supportsExtras;
+  const choices = nailService ? extras : [];
   function toggle(id) {
     setSelected(old => old.includes(id) ? old.filter(x => x !== id) : [...old, id]);
   }
