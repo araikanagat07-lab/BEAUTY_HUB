@@ -1,0 +1,830 @@
+/* ===== Неделя 6: отзывы, история, статистика, уведомления ===== */
+
+.w6-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.w6-user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #eac7d4;
+  color: #7c4560;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.w6-bell {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f7e5ec;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.w6-bell-badge,
+.w6-side-badge {
+  background: #ce83a0;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+
+.w6-bell-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  border: 2px solid white;
+}
+
+.w6-side-badge {
+  margin-left: 6px;
+}
+
+.w6-content {
+  text-align: left;
+}
+
+/* ---------- кнопки ---------- */
+.w6-btn,
+.w6-btn-outline {
+  display: inline-block;
+  border-radius: 9px;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 11px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.w6-btn {
+  background: #ce83a0;
+  color: white;
+  border: 1px solid #ce83a0;
+}
+
+.w6-btn:hover {
+  background: #b96d8b;
+}
+
+.w6-btn-outline {
+  background: white;
+  color: #a96383;
+  border: 1px solid #e4c3d0;
+}
+
+.w6-btn-outline:hover {
+  background: #fbf1f5;
+}
+
+.w6-btn-outline:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.w6-btn-small {
+  padding: 8px 14px;
+  font-size: 12px;
+}
+
+.w6-full {
+  width: 100%;
+}
+
+.w6-link {
+  color: #b77c96;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* ---------- общие блоки ---------- */
+.w6-panel {
+  background: white;
+  border-radius: 15px;
+  padding: 22px;
+  margin-top: 18px;
+  text-align: left;
+}
+
+.w6-panel h2 {
+  font-size: 18px;
+  margin: 0 0 16px;
+  color: #3b2c34;
+}
+
+.w6-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.w6-panel-heading h2 {
+  margin: 0;
+}
+
+.w6-panel-heading select,
+.w6-review-form input,
+.w6-review-form select,
+.w6-review-form textarea {
+  border: 1px solid #ead7de;
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #3b2c34;
+  background: #fdf9fa;
+}
+
+.w6-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.w6-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.w6-kpis-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.w6-kpis > div {
+  background: white;
+  border-radius: 13px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.w6-kpis span {
+  color: #9b8c90;
+  font-size: 12px;
+}
+
+.w6-kpis strong {
+  font-size: 22px;
+  color: #3b2c34;
+  white-space: nowrap;
+}
+
+.w6-kpis .w6-kpi-text {
+  font-size: 17px;
+}
+
+.w6-kpis small {
+  color: #b77c96;
+  font-size: 11px;
+}
+
+.w6-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.w6-tabs button,
+.w6-segment button {
+  border: none;
+  background: white;
+  color: #6d5d63;
+  border-radius: 20px;
+  padding: 9px 16px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.w6-tabs button small {
+  color: #b9a7ae;
+  margin-left: 4px;
+}
+
+.w6-tabs button.active,
+.w6-segment button.active {
+  background: #ce83a0;
+  color: white;
+}
+
+.w6-tabs button.active small {
+  color: #fbe3ec;
+}
+
+.w6-segment {
+  background: white;
+  border-radius: 22px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.w6-empty {
+  color: #9b8c90;
+  font-size: 13px;
+  padding: 18px;
+  text-align: center;
+}
+
+.w6-empty a {
+  color: #a96383;
+}
+
+.w6-error {
+  background: #fbe9ec;
+  color: #b33b57;
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin: 10px 0 0;
+}
+
+.w6-success {
+  background: #e8f5ed;
+  color: #3c805c;
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.w6-success a {
+  color: #3c805c;
+}
+
+/* ---------- статусы ---------- */
+.w6-status-completed {
+  background: #e8f5ed;
+  color: #52836b;
+}
+
+.w6-status-confirmed {
+  background: #e7eff9;
+  color: #4f6f99;
+}
+
+.w6-status-pending {
+  background: #f8e8ee;
+  color: #b77c96;
+}
+
+.w6-status-cancelled,
+.w6-status-missed {
+  background: #f1eeee;
+  color: #8f8285;
+}
+
+/* ---------- 1. Отзывы ---------- */
+.w6-reviews-main {
+  text-align: left;
+}
+
+.w6-breadcrumb {
+  font-size: 12px;
+  color: #9b8c90;
+}
+
+.w6-breadcrumb a {
+  color: #9b8c90;
+  text-decoration: none;
+}
+
+.w6-rating-card {
+  background: #f3e7e3;
+  border-radius: 18px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1.4fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.w6-rating-master {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.w6-rating-master img {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.w6-rating-master h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  color: #3b2c34;
+}
+
+.w6-rating-master p {
+  color: #806b74;
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+
+.w6-rating-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.w6-rating-big strong {
+  font-size: 46px;
+  line-height: 1;
+  color: #3b2c34;
+}
+
+.w6-rating-big > span:last-child {
+  font-size: 12px;
+  color: #9b8c90;
+}
+
+.w6-stars {
+  color: #e3d3d8;
+  letter-spacing: 1px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.w6-stars .on {
+  color: #e2a23b;
+}
+
+.w6-stars.big {
+  font-size: 20px;
+}
+
+.w6-rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.w6-rating-bar,
+.w6-days > div {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #6d5d63;
+}
+
+.w6-rating-bar > div,
+.w6-days > div > div,
+.w6-service-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.w6-days > div > div,
+.w6-service-bar {
+  background: #f5ebee;
+}
+
+.w6-rating-bar i,
+.w6-days i,
+.w6-service-bar i {
+  display: block;
+  height: 100%;
+  background: #ce83a0;
+  border-radius: 4px;
+}
+
+.w6-rating-bar small,
+.w6-days small {
+  text-align: right;
+  color: #9b8c90;
+}
+
+.w6-reviews-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.w6-reviews-grid .w6-panel {
+  border: 1px solid #f1e2e7;
+}
+
+.w6-visit-note {
+  background: #f7e5ec;
+  color: #a96383;
+  font-size: 12px;
+  border-radius: 9px;
+  padding: 9px 12px;
+  margin: -4px 0 14px;
+}
+
+.w6-review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.w6-review-form label {
+  font-size: 12px;
+  color: #806b74;
+  margin-top: 6px;
+}
+
+.w6-review-form textarea {
+  resize: vertical;
+}
+
+.w6-review-form .w6-btn {
+  margin-top: 10px;
+}
+
+.w6-counter {
+  align-self: flex-end;
+  color: #b9a7ae;
+  font-size: 11px;
+}
+
+.w6-star-picker {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.w6-star-picker button {
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #e3d3d8;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.w6-star-picker button.on {
+  color: #e2a23b;
+}
+
+.w6-star-picker span {
+  margin-left: 10px;
+  font-size: 13px;
+  color: #a96383;
+}
+
+.w6-review-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.w6-review {
+  padding: 16px 0;
+  border-bottom: 1px solid #f3e7e9;
+}
+
+.w6-review:first-child {
+  padding-top: 0;
+}
+
+.w6-review:last-child {
+  border-bottom: none;
+}
+
+.w6-review-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.w6-review-top > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.w6-review-top strong {
+  font-size: 14px;
+  color: #3b2c34;
+}
+
+.w6-review-top small {
+  font-size: 11px;
+  color: #9b8c90;
+}
+
+.w6-review p {
+  font-size: 13px;
+  color: #5d4d54;
+  margin: 10px 0 0 48px;
+  line-height: 1.5;
+}
+
+.w6-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eac7d4;
+  color: #7c4560;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ---------- 2. История посещений ---------- */
+.w6-visit .client-booking-info p {
+  line-height: 1.5;
+}
+
+.w6-visit-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.w6-visit-actions .w6-btn-outline {
+  padding: 8px 14px;
+  font-size: 12px;
+}
+
+.w6-reviewed {
+  font-size: 12px;
+  color: #c08b3a;
+  white-space: nowrap;
+}
+
+/* ---------- 3. Статистика ---------- */
+.w6-stats-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 18px;
+}
+
+.w6-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 200px;
+}
+
+.w6-chart-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.w6-chart-col small {
+  font-size: 11px;
+  color: #9b8c90;
+}
+
+.w6-chart-col span {
+  font-size: 12px;
+  color: #6d5d63;
+}
+
+.w6-chart-track {
+  flex: 1;
+  width: 100%;
+  max-width: 46px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.w6-chart-track i {
+  display: block;
+  width: 100%;
+  min-height: 3px;
+  background: #ecd3dd;
+  border-radius: 8px 8px 3px 3px;
+  transition: height 0.3s;
+}
+
+.w6-chart-col.active .w6-chart-track i {
+  background: #ce83a0;
+}
+
+.w6-days {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.w6-services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.w6-service-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 90px 100px;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.w6-service-row strong {
+  color: #3b2c34;
+  font-weight: 600;
+}
+
+.w6-service-row span {
+  color: #806b74;
+  text-align: right;
+}
+
+.w6-request-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.w6-request-actions .w6-btn-outline {
+  padding: 8px 14px;
+  font-size: 12px;
+}
+
+/* ---------- 4. Уведомления ---------- */
+.w6-notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.w6-notification {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid transparent;
+}
+
+.w6-notification.unread {
+  border-color: #eac7d4;
+  background: #fffafc;
+}
+
+.w6-notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #f7e5ec;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  color: #a96383;
+}
+
+.w6-type-booking_confirmed {
+  background: #e8f5ed;
+}
+
+.w6-type-booking_cancelled {
+  background: #f1eeee;
+  color: #8f8285;
+}
+
+.w6-type-review_added {
+  background: #fbf1df;
+  color: #c08b3a;
+}
+
+.w6-type-reminder {
+  background: #e7eff9;
+}
+
+.w6-notification-body {
+  flex: 1;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.w6-notification-body strong {
+  font-size: 14px;
+  color: #3b2c34;
+}
+
+.w6-notification-body p {
+  font-size: 13px;
+  color: #6d5d63;
+  margin: 0;
+}
+
+.w6-notification-body small {
+  font-size: 11px;
+  color: #b9a7ae;
+}
+
+.w6-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ce83a0;
+  flex-shrink: 0;
+}
+
+.w6-remove {
+  background: none;
+  border: none;
+  color: #c9b7be;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.w6-remove:hover {
+  color: #a96383;
+}
+
+.w6-pattern-note {
+  margin-top: 22px;
+  background: white;
+  border-left: 4px solid #ce83a0;
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 13px;
+  color: #6d5d63;
+  text-align: left;
+}
+
+.w6-pattern-note p {
+  margin: 8px 0 0;
+  line-height: 1.55;
+}
+
+.w6-pattern-note code {
+  background: #f7e5ec;
+  color: #a96383;
+  padding: 1px 6px;
+  font-size: 12px;
+}
+
+/* ---------- адаптив ---------- */
+@media (max-width: 1000px) {
+  .w6-kpis,
+  .w6-kpis-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .w6-rating-card,
+  .w6-reviews-grid,
+  .w6-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .w6-service-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .w6-visit-actions,
+  .w6-request-actions {
+    width: 100%;
+  }
+}

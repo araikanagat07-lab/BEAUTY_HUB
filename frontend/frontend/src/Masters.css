@@ -1,0 +1,456 @@
+.masters-page {
+    min-height: 100vh;
+    background: #ffffff;
+    color: #382a32;
+    font-family: Arial, sans-serif;
+  }
+  
+  .masters-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: white;
+  }
+  
+  .masters-logo {
+    color: #382a32;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  
+  .masters-nav {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .masters-nav a {
+    color: #382a32;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  
+  .masters-login {
+    background: #ce83a0;
+    color: white;
+    text-decoration: none;
+    padding: 11px 28px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  
+  .masters-main {
+    max-width: 1200px;
+    min-height: 750px;
+    margin: 0 auto;
+    background: #ead6d1;
+    padding: 30px 55px 55px;
+    box-sizing: border-box;
+  }
+  
+  .masters-main h1 {
+    font-size: 33px;
+    margin: 0 0 8px;
+  }
+  
+  .masters-description {
+    color: #84767a;
+    font-size: 17px;
+    margin: 0 0 22px;
+  }
+  
+  .masters-filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 12px;
+    background: white;
+    padding: 15px;
+    border-radius: 16px;
+    margin-bottom: 26px;
+  }
+  
+  .masters-filters input,
+  .masters-filters select {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 0 13px;
+    box-sizing: border-box;
+    border: 1px solid #eadde0;
+    border-radius: 9px;
+    background: #fcf9f8;
+    color: #44363c;
+    font-size: 13px;
+  }
+  
+  .masters-filters button {
+    border: none;
+    border-radius: 9px;
+    background: #ce83a0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .masters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+  }
+  
+  .masters-page .master-card {
+    min-width: 0;
+    min-height: 205px;
+    background: white;
+    border-radius: 15px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .master-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  
+  .master-top img {
+    width: 95px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
+  .master-top h3 {
+    margin: 12px 0 6px;
+    font-size: 18px;
+  }
+  
+  .master-top p {
+    margin: 0 0 10px;
+    color: #8e8587;
+    font-size: 13px;
+  }
+  
+  .master-rating {
+    color: #b47b94;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .master-bottom {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .master-bottom strong {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  
+  .master-bottom a {
+    padding: 10px 17px;
+    min-width: 110px;
+    text-align: center;
+    background: #ce83a0;
+    color: white;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  
+  .masters-results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 20px;
+  }
+  
+  .masters-results h2 {
+    margin: 0 0 5px;
+  }
+  
+  .masters-results p {
+    margin: 0;
+    color: #84767a;
+  }
+  
+  .masters-results button {
+    background: white;
+    border: 1px solid #ce83a0;
+    color: #aa6280;
+    padding: 11px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  
+  .masters-empty {
+    text-align: center;
+    padding: 30px;
+  }
+  
+  @media (max-width: 800px) {
+    .masters-header {
+      padding: 15px;
+      flex-wrap: wrap;
+    }
+  
+    .masters-nav {
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+  
+    .masters-main {
+      padding: 25px 15px;
+    }
+  
+    .masters-filters {
+      grid-template-columns: 1fr;
+    }
+  
+    .masters-filters button {
+      height: 42px;
+    }
+  
+    .masters-grid {
+      grid-template-columns: 1fr;
+    }
+  }.masters-page {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #382a32;
+  font-family: Arial, sans-serif;
+}
+
+.masters-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: white;
+}
+
+.masters-logo {
+  color: #382a32;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.masters-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.masters-nav a {
+  color: #382a32;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.masters-login {
+  background: #ce83a0;
+  color: white;
+  text-decoration: none;
+  padding: 11px 28px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.masters-main {
+  max-width: 1200px;
+  min-height: 750px;
+  margin: 0 auto;
+  background: #ead6d1;
+  padding: 30px 55px 55px;
+  box-sizing: border-box;
+}
+
+.masters-main h1 {
+  font-size: 33px;
+  margin: 0 0 8px;
+}
+
+.masters-description {
+  color: #84767a;
+  font-size: 17px;
+  margin: 0 0 22px;
+}
+
+.masters-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  margin-bottom: 26px;
+}
+
+.masters-filters input,
+.masters-filters select {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 0 13px;
+  box-sizing: border-box;
+  border: 1px solid #eadde0;
+  border-radius: 9px;
+  background: #fcf9f8;
+  color: #44363c;
+  font-size: 13px;
+}
+
+.masters-filters button {
+  border: none;
+  border-radius: 9px;
+  background: #ce83a0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.masters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 19px;
+}
+
+.masters-page .master-card {
+  min-width: 0;
+  min-height: 205px;
+  background: white;
+  border-radius: 15px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.master-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.master-top img {
+  width: 95px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.master-top h3 {
+  margin: 12px 0 6px;
+  font-size: 18px;
+}
+
+.master-top p {
+  margin: 0 0 10px;
+  color: #8e8587;
+  font-size: 13px;
+}
+
+.master-rating {
+  color: #b47b94;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.master-bottom {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.master-bottom strong {
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.master-bottom a {
+  padding: 10px 17px;
+  min-width: 110px;
+  text-align: center;
+  background: #ce83a0;
+  color: white;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.masters-results {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 20px;
+}
+
+.masters-results h2 {
+  margin: 0 0 5px;
+}
+
+.masters-results p {
+  margin: 0;
+  color: #84767a;
+}
+
+.masters-results button {
+  background: white;
+  border: 1px solid #ce83a0;
+  color: #aa6280;
+  padding: 11px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.masters-empty {
+  text-align: center;
+  padding: 30px;
+}
+
+@media (max-width: 800px) {
+  .masters-header {
+    padding: 15px;
+    flex-wrap: wrap;
+  }
+
+  .masters-nav {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .masters-main {
+    padding: 25px 15px;
+  }
+
+  .masters-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .masters-filters button {
+    height: 42px;
+  }
+
+  .masters-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.masters-page .master-card h3 {
+  color: #392d34;
+}
